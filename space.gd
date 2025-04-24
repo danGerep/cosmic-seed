@@ -116,6 +116,10 @@ func on_star_type_value_changed(value: float) -> void:
 
 
 func on_gravity_value_changed(value: float) -> void:
+	if value == 0.0 or value == 100.0:
+		print("game over")
+		return
+
 	if value <= lower_value:
 		warning.text = "GRAVITY IS TOO LOW"
 		warning.visible = true
