@@ -27,27 +27,23 @@ mouse_filter = 2
 
 [node name="BurnFuelLabel" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -83.0
-offset_top = -23.0
-offset_right = 83.0
+offset_left = -84.5
+offset_right = 84.5
+offset_bottom = 23.0
 grow_horizontal = 2
-grow_vertical = 0
 text = "START BURNING FUEL"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -250.0
-offset_right = 254.0
-offset_bottom = 50.0
-grow_horizontal = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 504.0
+grow_vertical = 0
 
 [node name="Fuel" type="ProgressBar" parent="CanvasLayer/Control/HBoxContainer"]
 unique_name_in_owner = true
