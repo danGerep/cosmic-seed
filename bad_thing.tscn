@@ -12,7 +12,7 @@ radius = 30.0
 [node name="BadThing" type="RigidBody2D"]
 collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_qtpbo")
-gravity_scale = 0.2
+gravity_scale = 0.1
 script = ExtResource("1_bnv3u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

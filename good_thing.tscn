@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dlyh5wfucpso" path="res://icon.svg" id="1_qh2dq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qtpbo"]
-bounce = 0.25
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kyie0"]
 radius = 38.0132
@@ -15,7 +14,7 @@ radius = 30.0
 [node name="GoodThing" type="RigidBody2D"]
 collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_qtpbo")
-gravity_scale = 0.2
+gravity_scale = 0.1
 script = ExtResource("1_kyie0")
 
 [node name="MouseArea" type="Area2D" parent="."]
