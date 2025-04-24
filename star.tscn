@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bekdojy4i16x3"]
+
+[ext_resource type="PackedScene" uid="uid://ckgeadbx4jcw2" path="res://a_star.tscn" id="1_46ao5"]
+[ext_resource type="Script" uid="uid://b2gpoqog8qk3q" path="res://star.gd" id="1_e2x7v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e2x7v"]
+radius = 176.003
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d7oe7"]
+radius = 135.004
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dvwch"]
+radius = 95.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c2gop"]
+radius = 16.0
+
+[node name="Star" type="Area2D"]
+gravity_space_override = 1
+gravity_point = true
+script = ExtResource("1_e2x7v")
+
+[node name="StarImage" type="Node" parent="."]
+
+[node name="AStar" parent="StarImage" instance=ExtResource("1_46ao5")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_e2x7v")
+
+[node name="GravityPull" type="Area2D" parent="."]
+visible = false
+gravity_space_override = 1
+gravity_point = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityPull"]
+shape = SubResource("CircleShape2D_d7oe7")
+
+[node name="GravityPull2" type="Area2D" parent="."]
+visible = false
+gravity_space_override = 1
+gravity_point = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityPull2"]
+shape = SubResource("CircleShape2D_dvwch")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Devour" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Devour"]
+shape = SubResource("CircleShape2D_c2gop")
