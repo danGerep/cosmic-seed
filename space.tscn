@@ -168,6 +168,11 @@ size_flags_horizontal = 3
 text = "A"
 horizontal_alignment = 1
 
+[node name="PointsLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="Star" parent="." instance=ExtResource("1_d5lh8")]
 
 [node name="Path2D" type="Path2D" parent="."]

@@ -21,6 +21,7 @@ extends Node2D
 @onready var star_type_label: Label = %StarTypeLabel
 
 @onready var star: Area2D = $Star
+@onready var points_label: Label = $CanvasLayer/Control/PointsLabel
 
 var things: Array = [
 	preload("res://good_thing.tscn"),
@@ -45,6 +46,9 @@ var start_types: Array[String] = [
 var current_start_type = 0
 var lower_value: float
 var higher_value: float
+
+var total_points = 0
+var points_multiplier = 1
 
 
 func _ready() -> void:
@@ -104,7 +108,7 @@ func calculate_threhold_lower_higher_values() -> void:
 func on_star_type_value_changed(value: float) -> void:
 	if value == 100.0:
 		current_start_type += 1
-		if current_start_type > len(start_types):
+		if current_start_type == len(start_types):
 			print("game over")
 			return
 
@@ -113,6 +117,7 @@ func on_star_type_value_changed(value: float) -> void:
 		set_threshold_bars()
 		calculate_threhold_lower_higher_values()
 		star_type.value = 0.0
+		points_multiplier += 1
 
 
 func on_gravity_value_changed(value: float) -> void:
@@ -156,11 +161,18 @@ func on_warning_timer_timeout() -> void:
 func on_good_collected():
 	fuel.value += 10
 	star_type.value += 10
-
+	total_points += 1 * points_multiplier
+	update_points()
 
 func on_bad_collected():
 	fuel.value -= 10
 	star_type.value -= 5
+	total_points -= 1 * points_multiplier
+	update_points()
+
+
+func update_points() -> void:
+	points_label.text = "%d" % total_points
 
 
 func spawn_timer_timeout() -> void:
