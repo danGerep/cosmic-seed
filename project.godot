@@ -43,4 +43,4 @@ space={
 
 [physics]
 
-2d/default_gravity=400.0
+2d/default_gravity=100.0
