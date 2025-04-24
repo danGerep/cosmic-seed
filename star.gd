@@ -6,7 +6,9 @@ extends Area2D
 var star_types = [
 	preload("res://a_star.tscn"),
 	preload("res://b_star.tscn"),
-	preload("res://c_star.tscn")
+	preload("res://c_star.tscn"),
+	preload("res://d_star.tscn"),
+	preload("res://e_star.tscn")
 ]
 
 var current_star

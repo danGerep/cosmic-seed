@@ -34,13 +34,17 @@ var burning_fuel_text = " BURNING FUEL"
 var threshold: Array[float] = [
 	0.1,
 	0.2,
-	0.3
+	0.3,
+	0.4,
+	0.45,
 ]
 
 var start_types: Array[String] = [
 	"A",
 	"B",
-	"C"
+	"C",
+	"D",
+	"E"
 ]
 
 var current_start_type = 0
@@ -160,7 +164,7 @@ func on_warning_timer_timeout() -> void:
 
 func on_good_collected():
 	fuel.value += 10
-	star_type.value += 10
+	star_type.value += 50
 	total_points += 1 * points_multiplier
 	update_points()
 
