@@ -13,6 +13,7 @@ func _ready() -> void:
 	area_2d.mouse_entered.connect(mouse_entered)
 	area_2d.mouse_exited.connect(mouse_exited)
 
+	linear_velocity = Vector2(randf_range(-100.0, 100.0), 0.0)
 
 func mouse_entered() -> void:
 	draggable = true

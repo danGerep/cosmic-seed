@@ -21,6 +21,8 @@ func _ready() -> void:
 	label.text = letters[key]
 	current_key = key
 
+	linear_velocity = Vector2(randf_range(-100.0, 100.0), 0.0)
+
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
