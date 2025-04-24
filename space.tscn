@@ -36,6 +36,24 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "START BURNING FUEL"
 
+[node name="Warning" type="Label" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("2_qtpbo")
+theme_type_variation = &"WarningLabel"
+horizontal_alignment = 1
+uppercase = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 2
@@ -168,3 +186,6 @@ wait_time = 0.5
 
 [node name="GravityTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="WarningTimer" type="Timer" parent="."]
+wait_time = 2.0

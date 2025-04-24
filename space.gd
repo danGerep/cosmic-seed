@@ -8,9 +8,12 @@ extends Node2D
 
 @onready var gravity_timer: Timer = $GravityTimer
 @onready var fuel_timer: Timer = $FuelTimer
+@onready var warning_timer: Timer = $WarningTimer
+
 @onready var star_type: ProgressBar = %StarType
 
 @onready var burn_fuel_label: Label = $CanvasLayer/Control/BurnFuelLabel
+@onready var warning: Label = $CanvasLayer/Control/Warning
 
 @onready var divider_left: Sprite2D = %DividerLeft
 @onready var divider_right: Sprite2D = %DividerRight
@@ -53,7 +56,9 @@ func _ready() -> void:
 	gravity_timer.timeout.connect(on_gravity_timer_timeout)
 	fuel_timer.timeout.connect(on_fuel_timer_timeout)
 	gravity.value_changed.connect(on_gravity_value_changed)
+	fuel.value_changed.connect(on_fuel_value_changed)
 	star_type.value_changed.connect(on_star_type_value_changed)
+	warning_timer.timeout.connect(on_warning_timer_timeout)
 
 	GameManager.good_collected.connect(on_good_collected)
 	GameManager.bad_collected.connect(on_bad_collected)
@@ -112,9 +117,20 @@ func on_star_type_value_changed(value: float) -> void:
 
 func on_gravity_value_changed(value: float) -> void:
 	if value <= lower_value:
-		print("lower value reached")
+		warning.text = "GRAVITY IS TOO LOW"
+		warning.visible = true
+		warning_timer.start()
 	elif value >= higher_value:
-		print("higher value reached")
+		warning.text = "GRAVITY IS TOO HIGH"
+		warning.visible = true
+		warning_timer.start()
+
+
+func on_fuel_value_changed(value: float) -> void:
+	if value <= 10:
+		warning.text = "FUEL IS TOO LOW"
+		warning.visible = true
+		warning_timer.start()
 
 
 func on_fuel_timer_timeout() -> void:
@@ -127,6 +143,10 @@ func on_fuel_timer_timeout() -> void:
 func on_gravity_timer_timeout() -> void:
 	if !burning_fuel:
 		gravity.value += 5
+
+
+func on_warning_timer_timeout() -> void:
+	warning.visible = false
 
 
 func on_good_collected():

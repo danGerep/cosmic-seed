@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=4 uid="uid://b81l82dk3nudx"]
+[gd_resource type="Theme" load_steps=10 format=4 uid="uid://b81l82dk3nudx"]
 
 [sub_resource type="Image" id="Image_t0pvk"]
 data = {
@@ -844,6 +844,14 @@ bg_color = Color(0.480734, 0.00257249, 0.79298, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5uja"]
 bg_color = Color(1, 0.345098, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lqla"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
 [resource]
 FuelBar/base_type = &"ProgressBar"
 FuelBar/colors/font_color = Color(0, 0, 0, 1)
@@ -864,3 +872,6 @@ GravityBar/styles/fill = SubResource("StyleBoxFlat_ulv8f")
 StarTypeBar/base_type = &"ProgressBar"
 StarTypeBar/styles/background = SubResource("StyleBoxFlat_t0pvk")
 StarTypeBar/styles/fill = SubResource("StyleBoxFlat_r5uja")
+WarningLabel/base_type = &"Label"
+WarningLabel/colors/font_color = Color(0.505882, 0, 0, 1)
+WarningLabel/styles/normal = SubResource("StyleBoxFlat_4lqla")
