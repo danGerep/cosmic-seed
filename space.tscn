@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://i6q26h78p8xe"]
+[gd_scene load_steps=9 format=3 uid="uid://i6q26h78p8xe"]
 
 [ext_resource type="Script" uid="uid://d0dktcqqtn2j" path="res://space.gd" id="1_81phd"]
 [ext_resource type="PackedScene" uid="uid://bekdojy4i16x3" path="res://star.tscn" id="1_d5lh8"]
 [ext_resource type="Theme" uid="uid://b81l82dk3nudx" path="res://space.tres" id="2_qtpbo"]
+[ext_resource type="Texture2D" uid="uid://c3nsv22ttv2wv" path="res://assets/universe.png" id="2_w5eul"]
 [ext_resource type="Texture2D" uid="uid://5ohri5wom3tn" path="res://assets/divider.png" id="3_rxlph"]
+[ext_resource type="Texture2D" uid="uid://dmpwj1bnh22nt" path="res://assets/layer1.png" id="6_b5fhv"]
+[ext_resource type="Texture2D" uid="uid://ctfdwpob5o8sf" path="res://assets/layer2.png" id="7_4fhbr"]
 
 [sub_resource type="Curve2D" id="Curve2D_81phd"]
 _data = {
@@ -13,6 +16,10 @@ point_count = 2
 
 [node name="Space" type="Node2D"]
 script = ExtResource("1_81phd")
+
+[node name="UniverseBackground" type="Sprite2D" parent="."]
+z_index = -100
+texture = ExtResource("2_w5eul")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -34,6 +41,8 @@ offset_left = -84.5
 offset_right = 84.5
 offset_bottom = 23.0
 grow_horizontal = 2
+theme = ExtResource("2_qtpbo")
+theme_type_variation = &"FuelLabel"
 text = "START BURNING FUEL"
 
 [node name="Warning" type="Label" parent="CanvasLayer/Control"]
@@ -54,16 +63,33 @@ theme_type_variation = &"WarningLabel"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+[node name="PointsLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 12
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -50.0
-offset_right = 504.0
+grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Fuel" type="ProgressBar" parent="CanvasLayer/Control/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -25.0
+offset_right = 504.0
+offset_bottom = 25.0
+grow_vertical = 2
+
+[node name="Fuel" type="ProgressBar" parent="CanvasLayer/Control/Panel/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -73,7 +99,7 @@ theme_type_variation = &"FuelBar"
 value = 50.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer/Fuel"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/HBoxContainer/Fuel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -88,7 +114,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "FUEL"
 
-[node name="Gravity" type="ProgressBar" parent="CanvasLayer/Control/HBoxContainer"]
+[node name="Gravity" type="ProgressBar" parent="CanvasLayer/Control/Panel/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -98,7 +124,7 @@ theme_type_variation = &"GravityBar"
 value = 10.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer/Gravity"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/HBoxContainer/Gravity"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -113,30 +139,31 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "GRAVITY"
 
-[node name="DividerLeft" type="Sprite2D" parent="CanvasLayer/Control/HBoxContainer/Gravity"]
+[node name="DividerLeft" type="Sprite2D" parent="CanvasLayer/Control/Panel/HBoxContainer/Gravity"]
 unique_name_in_owner = true
 position = Vector2(25, 25)
 scale = Vector2(0.3, 1)
 texture = ExtResource("3_rxlph")
 
-[node name="DividerRight" type="Sprite2D" parent="CanvasLayer/Control/HBoxContainer/Gravity"]
+[node name="DividerRight" type="Sprite2D" parent="CanvasLayer/Control/Panel/HBoxContainer/Gravity"]
 unique_name_in_owner = true
 position = Vector2(200, 25)
 scale = Vector2(0.3, 1)
 texture = ExtResource("3_rxlph")
 
-[node name="StarType" type="ProgressBar" parent="CanvasLayer/Control"]
+[node name="StarType" type="ProgressBar" parent="CanvasLayer/Control/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 6
 anchor_left = 1.0
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -250.0
-offset_top = -50.0
+offset_top = -25.0
+offset_bottom = 25.0
 grow_horizontal = 0
-grow_vertical = 0
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2_qtpbo")
@@ -144,7 +171,7 @@ theme_type_variation = &"StarTypeBar"
 value = 50.0
 show_percentage = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/StarType"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Panel/StarType"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -155,23 +182,18 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/StarType/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/StarType/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "STAR TYPE"
 horizontal_alignment = 1
 
-[node name="StarTypeLabel" type="Label" parent="CanvasLayer/Control/StarType/HBoxContainer"]
+[node name="StarTypeLabel" type="Label" parent="CanvasLayer/Control/Panel/StarType/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "A"
 horizontal_alignment = 1
-
-[node name="PointsLabel" type="Label" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
 
 [node name="Star" parent="." instance=ExtResource("1_d5lh8")]
 
@@ -194,3 +216,18 @@ autostart = true
 
 [node name="WarningTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="HighSpace" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 1440)
+autoscroll = Vector2(0, 100)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="HighSpace"]
+texture = ExtResource("6_b5fhv")
+
+[node name="MiddleSpace" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 1440)
+autoscroll = Vector2(0, 50)
+
+[node name="Sprite2D" type="Sprite2D" parent="MiddleSpace"]
+texture = ExtResource("7_4fhbr")
